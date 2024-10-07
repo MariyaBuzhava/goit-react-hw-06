@@ -2,20 +2,15 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 
 const ContactForm = () => {
-  const contact = useSelector((state) => state.contact.contacts);
-  const filter = useSelector((state) => state.contact.filters);
-
-  // const ContactForm = ({ addContact }) => {
-  //   const initialValues = {
-  //     name: "",
-  //     number: "",
-  //   };
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    addContact({ ...values, id: nanoid() });
+    const newContact = { ...values, id: nanoid() };
+    dispatch(addContact(newContact)); //
     resetForm();
   };
 
@@ -36,7 +31,7 @@ const ContactForm = () => {
   return (
     <div className={s.formWrapper}>
       <Formik
-        initialValues={filter}
+        initialValues={{ name: "", number: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
