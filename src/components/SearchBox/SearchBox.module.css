@@ -1,19 +1,19 @@
 .searchBox {
-  display: flex;
-  place-content: center;
+  margin: 20px auto;
+  width: 340px;
+  text-align: center;
 }
 .label {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 25px;
   & span {
     font-weight: bold;
   }
   .input {
     padding: 10px;
-    box-shadow: 2px 2px 12px;
-    border: none;
+    border: 1px solid #ba68c8;
     border-radius: 8px;
+    background-color: #f3e5f5;
   }
 }
